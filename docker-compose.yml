@@ -1,0 +1,22 @@
+services:
+  learningeventsourcing.api:
+    build:
+      context: .  # Root context of the project
+      dockerfile: ./LearningEventSourcing.Api/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  nginx:
+    build:
+      context: ./nginx  # Updated context for nginx service
+      dockerfile: ./Dockerfile  # Path to Dockerfile inside the nginx folder
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - learningeventsourcing.api
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/certs:/etc/nginx/certs

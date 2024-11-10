@@ -1,0 +1,6 @@
+@LearningEventSourcing.Api_HostAddress = http://localhost:5122
+
+GET {{LearningEventSourcing.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
